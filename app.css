@@ -1,0 +1,352 @@
+/* Variables */
+:root {
+  --bg: #000000;
+  --size: 120px;
+}
+
+.cloud {
+  position: absolute;
+  top: 0;
+  animation: moveCloud 6s linear infinite alternate;
+}
+
+@keyframes moveCloud {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: calc(100% - var(--size));
+  }
+}
+
+.cog-wheel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* Maintain the aspect ratio */
+  transform-origin: center center; /* Rotate around the center of the image */
+
+  animation: rotateCog 10s linear infinite; /* Adjust the animation duration as needed */
+}
+
+@keyframes rotateCog {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+/* Global styles */
+html,
+body,
+form {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Slabo 27px', serif;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* Input styles */
+input {
+  left: 50%;
+  opacity: 0.01;
+  position: fixed;
+  top: 50%;
+}
+
+/* Options section */
+.options {
+  display: flex;
+  flex-direction: column;
+  margin: 0 60px;
+}
+
+.options label {
+  background-color: #E0D6AF;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  border-radius: 50%;
+  cursor: pointer;
+  display: block;
+  height: var(--size);
+  margin: 10px auto;
+  transition: transform 0.2s;
+  transform: scale(1);
+  width: var(--size);
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-5px, 0);
+  }
+  50% {
+    transform: translate(5px, 0);
+  }
+  75% {
+    transform: translate(-5px, 0);
+  }
+  100% {
+    transform: translate(5px, 0);
+  }
+}
+
+.options label:hover {
+  background-color: #D1C79F;
+  animation: shake 0.1s ease-in-out;
+  background-size: 65%;
+}
+
+.options label.r {
+  background-image: url('http://www.jerrylow.com/demo/rps/rock.svg');
+  background-size: 50%;
+}
+
+.options label.r:hover {
+  background-size: 55%;
+}
+
+.options label.p {
+  background-image: url('http://www.jerrylow.com/demo/rps/paper.svg');
+}
+
+.options label.s {
+  background-image: url('http://www.jerrylow.com/demo/rps/scissor.svg');
+}
+
+/* Checked input styles */
+input.you:checked ~ .options label {
+  transform: scale(0.8);
+}
+
+input.you:nth-of-type(1):checked ~ .options label.r,
+input.you:nth-of-type(2):checked ~ .options label.p,
+input.you:nth-of-type(3):checked ~ .options label.s {
+  background-color: #BFCCA3;
+  transform: scale(1.25);
+  animation: rotate 2s infinite linear; /* Adjust the animation duration and timing function as needed */
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* It section */
+.it {
+  display: flex;
+  flex-direction: column;
+  margin: 0 60px;
+  width: var(--size);
+}
+
+.it div {
+  background-color: #C9A185;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  border-radius: 50%;
+  display: none;
+  height: var(--size);
+  transform: scale(1.25);
+  width: var(--size);
+}
+
+.it div.r {
+  background-image: url('http://www.jerrylow.com/demo/rps/rock.svg');
+  background-size: 50%;
+}
+
+.it div.p {
+  background-image: url('http://www.jerrylow.com/demo/rps/paper.svg');
+}
+
+.it div.s {
+  background-image: url('http://www.jerrylow.com/demo/rps/scissor.svg');
+}
+
+/* Game section */
+.game {
+  border-radius: 50%;
+  height: var(--size);
+  overflow: hidden;
+  position: relative;
+  width: var(--size);
+  z-index: 10;
+}
+
+.game:before,
+.game:after {
+  align-items: center;
+  background: lighten(#706C59, 20%);
+  color: white;
+  content: '';
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.game:after {
+  background: #706C59;
+  content: 'Fight!';
+  cursor: pointer;
+  font-size: 26px;
+  pointer-events: none;
+  transition: font 0.2s;
+  z-index: 1;
+  animation: pulse 2s infinite; /* Define the animation */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1); /* Start at normal size */
+  }
+  50% {
+    transform: scale(1.3); /* Scale up to 110% at 50% of the animation duration */
+  }
+  100% {
+    transform: scale(1); /* Return to normal size at the end */
+  }
+}
+
+.game:hover:after {
+  font-size: 30px;
+}
+
+.game .go {
+  animation-duration: .02s;
+  animation-name: random;
+  animation-iteration-count: infinite;
+  display: flex;
+  flex-direction: column;
+}
+
+.game .go:active {
+  animation-play-state: paused;
+}
+
+.game label {
+  cursor: pointer;
+  height: var(--size);
+  width: var(--size);
+}
+
+/* Skynet checked */
+input.skynet:checked ~ .game .go {
+  animation-play-state: paused;
+}
+
+@keyframes random {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-calc(var(--size) * 2));
+  }
+}
+
+/* Results section */
+/* Start */
+input.you:checked ~ .game:before {
+  display: none;
+}
+
+/* Results */
+input#you-1:checked ~ input#skynet-1:checked,
+input#you-2:checked ~ input#skynet-2:checked,
+input#you-3:checked ~ input#skynet-3:checked {
+  ~ .results .tie {
+    display: flex;
+  }
+}
+
+input#you-1:checked ~ input#skynet-3:checked,
+input#you-2:checked ~ input#skynet-1:checked,
+input#you-3:checked ~ input#skynet-2:checked {
+  ~ .results .win {
+    display: flex;
+  }
+}
+
+input#you-1:checked ~ input#skynet-2:checked,
+input#you-2:checked ~ input#skynet-3:checked,
+input#you-3:checked ~ input#skynet-1:checked {
+  ~ .results .lose {
+    display: flex;
+  }
+}
+
+input#skynet-1:checked ~ .it .r,
+input#skynet-2:checked ~ .it .p,
+input#skynet-3:checked ~ .it .s {
+  display: flex;
+}
+
+input.you:checked ~ input.skynet:checked ~ .results {
+  display: flex;
+}
+
+/* Results section styles */
+.results {
+  align-items: center;
+  display: none;
+  bottom: 0;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.results .win,
+.results .lose,
+.results .tie {
+  align-items: center;
+  background: #D1B354;
+  border-radius: 50%;
+  color: white;
+  display: none;
+  font-size: 40px;
+  height: calc(var(--size) + 20px);
+  justify-content: center;
+  width: calc(var(--size) + 20px);
+}
+
+.results button {
+  background: #706C59;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  margin: 20px 0 -60px;
+  width: 80px;
+}
