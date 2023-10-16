@@ -134,7 +134,7 @@ input {
 }
 
 .options label.r {
-  background-image: url('http://www.jerrylow.com/demo/rps/rock.svg');
+  background-image: url('card3.png');
   background-size: 50%;
 }
 
@@ -143,11 +143,11 @@ input {
 }
 
 .options label.p {
-  background-image: url('http://www.jerrylow.com/demo/rps/paper.svg');
+  background-image: url('card1.png');
 }
 
 .options label.s {
-  background-image: url('http://www.jerrylow.com/demo/rps/scissor.svg');
+  background-image: url('card2.png');
 }
 
 /* Checked input styles */
@@ -193,7 +193,7 @@ input.you:nth-of-type(3):checked ~ .options label.s {
 }
 
 .it div.r {
-  background-image: url('http://www.jerrylow.com/demo/rps/rock.svg');
+  background-image: url('card1.png');
   background-size: 50%;
 }
 
