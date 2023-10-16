@@ -49,9 +49,29 @@ form {
 }
 
 body {
-  background: var(--bg);
   font-family: 'Slabo 27px', serif;
 }
+
+.back-button {
+    background-color: #4caf50;
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    transition: box-shadow 1s;
+    position: absolute;
+    bottom: 20px; /* Adjust this value to control the distance from the bottom */
+    right: 20px; /* Adjust this value to control the distance from the right */
+    padding: 10px 20px; /* Adjust padding as needed */
+    color: #fff; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 
 form {
   align-items: center;

@@ -6,6 +6,16 @@
     --card-height: 5vh;
     --fade-width: 10vh;
 }
+
+body {
+    background-color: #333;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
 .grid1 {
     display: grid;
     justify-content: center;
